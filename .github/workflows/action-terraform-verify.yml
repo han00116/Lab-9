@@ -50,3 +50,15 @@ jobs:
       - name: Process check
         if: always()
         run: exit $CHECK_STATUS
+
+  terraform-validate:
+    name: Validate Terraform
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Validate Terraform configuration
+        uses: devops-infra/action-terraform-validate@v0.3.1
